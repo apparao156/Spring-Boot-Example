@@ -1,0 +1,62 @@
+server:
+  port: 8082
+
+spring:  profiles:    active: qa
+
+---
+
+spring:
+  profiles: dev
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:    
+    driver-class-name: org.postgresql.Driver
+    url : jdbc:postgresql://localhost:5432/dcbapp
+    username: postgres
+    password: postgres
+    
+welcome:
+  message: Welcome to Spring Boot! Dev tool added!
+
+---
+
+spring:
+  profiles: qa
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:    
+    driver-class-name: org.postgresql.Driver
+    url : jdbc:postgresql://localhost:5432/dcbapp-qa
+    username: postgres
+    password: postgres 
+
+welcome:
+  message: Welcome to Spring Boot! Dev tool added!
+  
+  
+management:  endpoints:    web:      exposure:        include: "*"
+        exclude: "env, beans"                
+    
+---
+
+spring:
+  profiles: prod
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:    
+    driver-class-name: org.postgresql.Driver
+    url : jdbc:postgresql://localhost:5432/dcbapp-prod
+    username: postgres
+    password: postgres    
+
+welcome:
+  message: Welcome to Spring Boot! Dev tool added!
